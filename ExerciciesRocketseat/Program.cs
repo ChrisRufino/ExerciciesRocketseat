@@ -1,5 +1,8 @@
 ﻿
 
+using System.Globalization;
+using System.Security.Cryptography;
+
 class Program
 
 {
@@ -107,6 +110,52 @@ class Program
         {
             Console.WriteLine("Falso");
         }
+
+
+        /* 6. Crie um programa que solicita ao usuário a exibição da data atual em diferentes formatos:
+            - Formato completo (dia da semana, dia do mês, mês, ano, hora, minutos, segundos).
+            - Apenas a data no formato "01/03/2024".
+            - Apenas a hora no formato de 24 horas.
+            - A data com o mês por extenso.*/
+
+
+        Console.Write("Digite a data atual em diversos formatos: ");
+        string inputDate = Console.ReadLine();
+
+        // Tenta converter a string para um DateTime
+        DateTime date;
+        bool isValidDate = DateTime.TryParse(inputDate, out date);
+
+        if (isValidDate)
+        {
+            // Formatar a hora no formato de 24 horas
+            string horaEmTexto = date.ToString("HH:mm");
+
+            // Formatar a data com o mês por extenso
+            string diaEmTexto = date.ToString("dd/MMMM/yyyy", new CultureInfo("pt-BR"));
+
+            //Formatar a data no formato completo
+            string dataCompleta = date.ToString("dddd, dd/MMMM/yyyy HH:mm:ss");
+
+            //Apenas a data no formato "01/03/2024".
+            string mesPorExtenso = date.ToString("dd/MM/yyyy");
+
+
+
+            Console.WriteLine($"Data completa: {dataCompleta}");
+            Console.WriteLine($"Hora: {horaEmTexto}");
+            Console.WriteLine($"Data: {diaEmTexto}");
+            Console.WriteLine($"Data: {mesPorExtenso}");
+
+        }
+
+        else
+        {
+            Console.WriteLine("Data inválida!");
+        }
+
+
+        // CONFESSO QUE TIVE AJUDA EXTERNA PARA REALIZAR ALGUNS EXERCICIOS, VALEU. POREM ENTENDI O CONCEITO DE CADA UM DELES..
 
 
     }
